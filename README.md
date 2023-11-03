@@ -1,6 +1,6 @@
 # Receipt Processor
 
-A webservice that fulfils the documented API in [api.yaml](https://github.com/fetch-rewards/receipt-processor-challenge/blob/main/api.yml). More information and examples on how to use this API can be found here [receipt-processor](https://github..com/fetch-rewards/receipt-processor-challenge)
+A webservice that fulfils the documented API in [api.yaml](https://github.com/fetch-rewards/receipt-processor-challenge/blob/main/api.yml). More information and examples on how to use this API can be found here [receipt-processor](https://github.com/fetch-rewards/receipt-processor-challenge)
 
 This project is a take home assesment for Fetch Rewards company Software Engineering Role.
 
