@@ -31,8 +31,8 @@ class ReceiptSerializer(serializers.ModelSerializer):
         check_unknown_fields(self)
         check_items_min_count(self)
         check_date_and_time_format(self)
-        price_validator_serializer(self)
-        # TODO: Validate that the sum of the items' prices equals to total price
+        total_validator_serializer(self)
+        total_price_validator(self)
         return data
 
     def create(self, validated_data):
@@ -58,5 +58,6 @@ class ReceiptSerializer(serializers.ModelSerializer):
         return receipt
 
     def generate_primary_key(self, string):
+        """ Generate UUID as the primary key for item """
         return uuid.UUID(hex=hashlib.md5(string.encode("UTF-8")).hexdigest())
 

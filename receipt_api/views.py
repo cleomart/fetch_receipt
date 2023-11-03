@@ -21,7 +21,10 @@ class ReceiptsView(APIView):
 
 class ReceiptPoints(APIView):
     def get(self, request, id, format=None):
-        if not ReceiptPointsCalc.does_exist(id):
-            return Response({"Error": f"receipt with id {id} does not exist"}, status=status.HTTP_400_BAD_REQUEST)
-        receipt_points = ReceiptPointsCalc(id)
-        return Response({"points": receipt_points.generate()}, status=status.HTTP_201_CREATED)
+        try:
+            if not ReceiptPointsCalc.does_exist(id):
+                return Response({"Error": f"receipt with id {id} does not exist"}, status=status.HTTP_400_BAD_REQUEST)
+            receipt_points = ReceiptPointsCalc(id)
+            return Response({"points": receipt_points.generate()}, status=status.HTTP_201_CREATED)
+        except Exception as e:
+            return Response({"Error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
