@@ -1,5 +1,6 @@
 from django.core.validators import RegexValidator
 from django.core.exceptions import ValidationError
+from decimal import Decimal
 
 price_validator =  \
     RegexValidator("^\\d+\\.\\d{2}$",
@@ -56,7 +57,9 @@ def total_validator_serializer(obj):
 def total_price_validator(obj):
     """ Check if the total and sum of items' price match """
     if hasattr(obj, 'initial_data'):
-         total_price = sum([float(item.get("price", 0)) for item in obj.initial_data["items"] ])
-         total = float(obj.initial_data.get("total", 0))
+         total_price = sum([Decimal(item.get("price", 0)) for item in obj.initial_data["items"] ])
+         total = Decimal(obj.initial_data.get("total", 0))
+         print(total)
+         print(total_price)
          if total != total_price:
               raise ValidationError({"total": [f"Total {total} does not sum to the total price of all items {total_price}"]})

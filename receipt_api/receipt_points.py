@@ -4,6 +4,7 @@ import re
 import math
 
 class ReceiptPointsCalc:
+    """ Receipt points calculator"""
     ALPHA_NUM_PATTERN = r'[a-zA-Z0-9]'
     AFTER_2PM_MINS = (60 * 14) + 1
     BEFORE_4PM_MINS = (60 * 16) - 1
