@@ -27,7 +27,6 @@ date_validator = \
 def check_unknown_fields(obj):
     """ Check fields that are not required to have """
     if hasattr(obj, 'initial_data'):
-            #print("initial ", obj.initial_data)
             unknown_fields = list(set(obj.initial_data.keys()) - set(obj.fields.keys()))
             if unknown_fields:
                 raise ValidationError({"unknown_fields": [f"Received unknowm fields={unknown_fields} in {obj.initial_data}"]})
@@ -59,7 +58,5 @@ def total_price_validator(obj):
     if hasattr(obj, 'initial_data'):
          total_price = sum([Decimal(item.get("price", 0)) for item in obj.initial_data["items"] ])
          total = Decimal(obj.initial_data.get("total", 0))
-         print(total)
-         print(total_price)
          if total != total_price:
               raise ValidationError({"total": [f"Total {total} does not sum to the total price of all items {total_price}"]})
