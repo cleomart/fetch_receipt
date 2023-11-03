@@ -32,6 +32,7 @@ class ReceiptSerializer(serializers.ModelSerializer):
         check_items_min_count(self)
         check_date_and_time_format(self)
         price_validator_serializer(self)
+        # TODO: Validate that the sum of the items' prices equals to total price
         return data
 
     def create(self, validated_data):
